@@ -1,0 +1,38 @@
+{
+  "name": "typescript-baseline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts",
+    "new_dev": "npx ts-node devapp.ts",
+    "build": "tsc -p .",
+    "prebuild": "node-sass ./public/scss/style.scss ./public/css/style.css --omit-source-map-url"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/app-root-path": "^1.2.4",
+    "@types/compression": "^1.7.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.11",
+    "@types/express-handlebars": "^3.1.0",
+    "@types/node": "^14.14.7",
+    "bulma": "^0.9.2",
+    "dotenv": "^8.2.0",
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1"
+  }
+}

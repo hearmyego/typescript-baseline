@@ -1,28 +1,28 @@
-import { Response, Request, NextFunction, RequestHandler } from 'express';
-import Controller from './controller';
+import { Response, Request } from 'express';
+import baseController from './baseController';
 import { Methods } from '../core/Methods';
-import isLoggedIn from '../middleware/isLoggedIn';
+
 import { IContentPayload } from '../core/IContentPayload';
 
-export default class defaultController extends Controller {
+export default class defaultController extends baseController {
 	public path = '/'; // The path on which this.routes will be mapped
 	public routes = [
 		{
-			path: '/', // Will become /:slug/<<VALUE>>
+			path: '/:slug',
 			method: Methods.GET,
-			handler: this.rootSite,
+			handler: this.slug,
 			localMiddleware: [],
 		},
 		{
-			path: '/profile', // Will become /:slug/<<VALUE>>
+			path: '/',
 			method: Methods.GET,
-			handler: this.hemmelig,
-			localMiddleware: [isLoggedIn],
+			handler: this.frontpage,
+			localMiddleware: [],
 		},
 		{
-			path: '/:slug', // Will become /:slug/<<VALUE>>
+			path: '*',
 			method: Methods.GET,
-			handler: this.slug,
+			handler: this.wildcard,
 			localMiddleware: [],
 		},
 	];
@@ -31,7 +31,19 @@ export default class defaultController extends Controller {
 		super();
 	}
 
-	async rootSite(request: Request, response: Response): Promise<void> {
+	async frontpage(request: Request, response: Response): Promise<void> {
+		console.log('frontpage');
+		const payload: IContentPayload = {
+			metaTags: {
+				title: 'Forside',
+			},
+		};
+
+		response.status(200).render('pages/index', payload);
+	}
+
+	async wildcard(request: Request, response: Response): Promise<void> {
+		console.log('wildcard');
 		const payload: IContentPayload = {
 			metaTags: {
 				title: 'Forside',
@@ -42,10 +54,9 @@ export default class defaultController extends Controller {
 	}
 
 	async slug(request: Request, response: Response): Promise<void> {
-		response.status(200).render('pages/slug');
-	}
-
-	async hemmelig(request: Request, response: Response): Promise<void> {
-		response.status(200).render('pages/hemmelig');
+		console.log('slug');
+		const slug = request.params.slug;
+		console.log(slug);
+		response.status(200).render('pages/' + slug);
 	}
 }

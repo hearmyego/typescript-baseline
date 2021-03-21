@@ -5,7 +5,7 @@ export default function isLoggedIn(
 	res: Response,
 	next: NextFunction
 ) {
-	//if (req.isAuthenticated()) return next();
+	if (req.isAuthenticated()) return next();
 
 	res.redirect('/');
 }

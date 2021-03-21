@@ -7,7 +7,7 @@ import express, {
 import { IController } from '../core/IController';
 import getTemplate, { errorResponse } from '../helpers/templateHelper';
 
-export default abstract class baseController {
+export default abstract class oldBaseController {
 	public template?: string;
 	public baseUrl!: string;
 

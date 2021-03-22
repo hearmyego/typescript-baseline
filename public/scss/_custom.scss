@@ -1,0 +1,23 @@
+// Making the burger menu a bit more visable
+.navbar-burger span {
+	height: 2px;
+	border-radius: 20px;
+}
+
+// Making the navbar truly transparant
+.navbar {
+	&.is-transparent {
+		background-color: transparent;
+		background-image: none;
+	}
+}
+
+// placing the cookie bar
+.cookie-banner {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 999;
+	border-radius: 0px;
+}

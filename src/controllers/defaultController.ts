@@ -2,7 +2,7 @@ import { Response, Request } from 'express';
 import baseController from './baseController';
 import { Methods } from '../core/Methods';
 
-import { IContentPayload } from '../core/IContentPayload';
+import { IContentPayload as IViewModel } from '../core/IContentPayload';
 import { getTemplate, makeTitleFromSlug } from '../helpers/templateHelper';
 
 export default class defaultController extends baseController {
@@ -20,34 +20,16 @@ export default class defaultController extends baseController {
 			handler: this.frontpage,
 			localMiddleware: [],
 		},
-		// {
-		// 	path: '*',
-		// 	method: Methods.GET,
-		// 	handler: this.wildcard,
-		// 	localMiddleware: [],
-		// },
 	];
 
 	async frontpage(request: Request, response: Response): Promise<void> {
 		console.log('frontpage');
-		const payload: IContentPayload = {
+		const viewModel: IViewModel = {
 			metaTags: {
 				title: 'Forside',
 			},
 		};
-
-		response.status(200).render('pages/index', payload);
-	}
-
-	async wildcard(request: Request, response: Response): Promise<void> {
-		console.log('wildcard');
-		const payload: IContentPayload = {
-			metaTags: {
-				title: 'Forside',
-			},
-		};
-
-		response.status(200).render('pages/index', payload);
+		response.status(200).render('pages/index', viewModel);
 	}
 
 	async slug(request: Request, response: Response): Promise<void> {
@@ -55,22 +37,20 @@ export default class defaultController extends baseController {
 		const slug = request.params.slug;
 		const template = getTemplate(slug);
 
-		const title = makeTitleFromSlug(slug);
-
-		const payload: IContentPayload = {
+		let viewModel: IViewModel = {
 			metaTags: {
-				title: title,
+				title: makeTitleFromSlug(slug),
 			},
 		};
 
 		if (template.status === 400) {
-			const payload: IContentPayload = {
+			viewModel = {
 				metaTags: {
 					title: 'Side ikke fundet',
 				},
 			};
 		}
 
-		response.status(template.status).render(template.templatename, payload);
+		response.status(template.status).render(template.templatename, viewModel);
 	}
 }

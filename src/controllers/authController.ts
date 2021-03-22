@@ -38,10 +38,6 @@ export default class authController extends baseController {
 		},
 	];
 
-	constructor() {
-		super();
-	}
-
 	async loginPost(request: Request, response: Response): Promise<void> {
 		console.log('loginPost');
 		response.status(200).render('pages/login');

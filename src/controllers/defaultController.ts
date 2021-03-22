@@ -3,7 +3,7 @@ import baseController from './baseController';
 import { Methods } from '../core/Methods';
 
 import { IContentPayload } from '../core/IContentPayload';
-import getTemplate from '../helpers/templateHelper';
+import { getTemplate, makeTitleFromSlug } from '../helpers/templateHelper';
 
 export default class defaultController extends baseController {
 	public path = '/'; // The path on which this.routes will be mapped
@@ -20,17 +20,13 @@ export default class defaultController extends baseController {
 			handler: this.frontpage,
 			localMiddleware: [],
 		},
-		{
-			path: '*',
-			method: Methods.GET,
-			handler: this.wildcard,
-			localMiddleware: [],
-		},
+		// {
+		// 	path: '*',
+		// 	method: Methods.GET,
+		// 	handler: this.wildcard,
+		// 	localMiddleware: [],
+		// },
 	];
-
-	constructor() {
-		super();
-	}
 
 	async frontpage(request: Request, response: Response): Promise<void> {
 		console.log('frontpage');
@@ -58,6 +54,23 @@ export default class defaultController extends baseController {
 		console.log('slug');
 		const slug = request.params.slug;
 		const template = getTemplate(slug);
-		response.status(template.status).render(template.templatename);
+
+		const title = makeTitleFromSlug(slug);
+
+		const payload: IContentPayload = {
+			metaTags: {
+				title: title,
+			},
+		};
+
+		if (template.status === 400) {
+			const payload: IContentPayload = {
+				metaTags: {
+					title: 'Side ikke fundet',
+				},
+			};
+		}
+
+		response.status(template.status).render(template.templatename, payload);
 	}
 }

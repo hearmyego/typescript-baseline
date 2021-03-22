@@ -15,10 +15,6 @@ export default class profileController extends baseController {
 		},
 	];
 
-	constructor() {
-		super();
-	}
-
 	async profile(request: Request, response: Response): Promise<void> {
 		console.log('profile');
 

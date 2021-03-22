@@ -2,7 +2,7 @@ import { Response, Request } from 'express';
 import baseController from './baseController';
 import { Methods } from '../core/Methods';
 
-import { IContentPayload as IViewModel } from '../core/IContentPayload';
+import { IViewModel } from '../core/IViewModel';
 import { getTemplate, makeTitleFromSlug } from '../helpers/templateHelper';
 
 export default class defaultController extends baseController {

@@ -2,7 +2,7 @@ import { Response, Request, NextFunction, RequestHandler } from 'express';
 import baseController from './baseController';
 import { Methods } from '../core/Methods';
 import isLoggedIn from '../middleware/isLoggedIn';
-import { IContentPayload } from '../core/IContentPayload';
+import { IViewModel } from '../core/IViewModel';
 
 export default class profileController extends baseController {
 	public path = '/profile'; // The path on which this.routes will be mapped
@@ -18,13 +18,13 @@ export default class profileController extends baseController {
 	async profile(request: Request, response: Response): Promise<void> {
 		console.log('profile');
 
-		const payload: IContentPayload = {
+		const viewModel: IViewModel = {
 			metaTags: {
 				title: 'Min profil',
 			},
 			profile: request.user,
 		};
 
-		response.status(200).render('pages/profile', payload);
+		response.status(200).render('pages/profile', viewModel);
 	}
 }

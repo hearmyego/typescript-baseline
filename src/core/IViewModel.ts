@@ -1,6 +1,6 @@
 import { IMetaTags } from './IMetaTags';
 
-export interface IContentPayload {
+export interface IViewModel {
 	metaTags: IMetaTags;
 	content?: any;
 	profile?: any;

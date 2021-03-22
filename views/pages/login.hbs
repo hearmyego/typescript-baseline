@@ -1,35 +1,38 @@
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<section class="hero is-fullheight is-light">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <h3 class="title">Login</h3>
+                <div class="box">
 
-<div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
+                    <form action="/login" method="post">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="email" placeholder="Your Email" autofocus="" name="email">
+                            </div>
+                        </div>
 
-        <h1><span class="fa fa-sign-in"></span> Login</h1>
-
-
-        <div class="alert alert-danger">
-            {{ message }}
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="password" placeholder="Your Password" name="password">
+                            </div>
+                        </div>
+                        {{!-- <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Remember me
+                            </label>
+                        </div> --}}
+                        <button class="button is-block is-info is-fullwidth">Login
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+                <p class="has-text-centered">
+                    Dont have an account? <a href="/signup">Sign Up</a> &nbsp;·&nbsp;
+                    {{!-- <a href="../">Forgot Password</a> --}}
+                </p>
+            </div>
         </div>
-
-
-        <!-- LOGIN FORM -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
-
-        <hr>
-
-        <p>Need an account? <a href="/signup">Signup</a></p>
-        <p>Or go <a href="/">home</a>.</p>
-
     </div>
-</div>
+</section>

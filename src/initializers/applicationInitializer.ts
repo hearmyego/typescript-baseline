@@ -1,9 +1,11 @@
-import { Application } from 'express';
+import express, { Application } from 'express';
 import BaseInitializer from './baseInitializer';
 
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import appRoot from 'app-root-path';
+import path from 'path';
 
 export class applicationInitializer extends BaseInitializer {
 	constructor(app: Application) {
@@ -19,5 +21,7 @@ export class applicationInitializer extends BaseInitializer {
 		this.app.use(bodyParser.urlencoded({ extended: true }));
 		this.app.use(cookieParser());
 		this.app.use(compression());
+
+		this.app.use(express.static(path.join(appRoot.path, 'public')));
 	}
 }

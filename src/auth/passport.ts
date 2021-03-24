@@ -4,8 +4,8 @@ import { IUser } from '../core/IUser';
 
 import { localSignupStrategy } from './strategies/localSignupStrategy';
 import { localLoginStrategy } from './strategies/localLoginStrategy';
-import { deserializeUser } from './strategies/deserializeUser';
-import { serializeUser } from './strategies/serializeUser';
+import { authZeroStrategy } from './strategies/authZeroStrategy';
+import { deserializeUser, serializeUser } from './strategies/userSerialization';
 
 // load the auth variables
 // import configAuth from './config'; // use this one for testing
@@ -17,9 +17,14 @@ declare global {
 }
 
 export default function passportConfig(passport: passport.Authenticator) {
-	passport.serializeUser(serializeUser());
-	passport.deserializeUser(deserializeUser());
+	passport.serializeUser((user, done) => {
+		done(null, user);
+	});
+	passport.deserializeUser((user, done) => {
+		done(null, user as Express.User);
+	});
 
 	passport.use('local-login', localLoginStrategy());
 	passport.use('local-signup', localSignupStrategy());
+	passport.use('authZero', authZeroStrategy());
 }

@@ -1,14 +1,14 @@
-import { application } from './application';
-import { handlebarsViewEngine } from './handlebarsViewEngine';
-import { middleware } from './middleware';
+import { applicationInitializer } from './applicationInitializer';
+import { handlebarsViewEngineInitializer } from './handlebarsViewEngineInitializer';
+import { middlewareInitializer } from './middlewareInitializer';
 import { routesInitializer } from './routesInitializer';
 import { databaseInitializer } from './databaseInitializer';
 import { passportInitializer } from './passportInitializer';
 
 export default [
-	application,
-	handlebarsViewEngine,
-	middleware,
+	applicationInitializer,
+	handlebarsViewEngineInitializer,
+	middlewareInitializer,
 
 	databaseInitializer,
 	passportInitializer,

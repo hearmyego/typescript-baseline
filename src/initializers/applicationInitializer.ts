@@ -1,17 +1,17 @@
 import { Application } from 'express';
-import BaseInitializer from './base';
+import BaseInitializer from './baseInitializer';
 
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
-export class application extends BaseInitializer {
+export class applicationInitializer extends BaseInitializer {
 	constructor(app: Application) {
 		super(app);
 	}
 
 	public async intialize() {
-		console.log('application');
+		console.log('applicationInitializer');
 
 		this.app.disable('etag');
 		this.app.disable('x-powered-by');

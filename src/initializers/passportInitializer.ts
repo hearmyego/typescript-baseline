@@ -1,5 +1,5 @@
 import { Application } from 'express';
-import BaseInitializer from './base';
+import BaseInitializer from './baseInitializer';
 
 import session from 'express-session';
 import passport from 'passport';

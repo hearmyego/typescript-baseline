@@ -1,18 +1,18 @@
 import { Application } from 'express';
-import BaseInitializer from './base';
+import BaseInitializer from './baseInitializer';
 
 import path from 'path';
 import appRoot from 'app-root-path';
 import exphbs from 'express-handlebars';
 import helpers from '../helpers/handlebarsHelpers';
 
-export class handlebarsViewEngine extends BaseInitializer {
+export class handlebarsViewEngineInitializer extends BaseInitializer {
 	constructor(app: Application) {
 		super(app);
 	}
 
 	public intialize(): void {
-		console.log('handlebarsViewEngine');
+		console.log('handlebarsViewEngineInitializer');
 
 		const viewFolder = path.join(appRoot.path, 'views');
 		const partialsDir = path.join(viewFolder, 'partials');

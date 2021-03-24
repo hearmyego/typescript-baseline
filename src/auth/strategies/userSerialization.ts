@@ -1,5 +1,17 @@
 import userModel from '../../database/userModel';
 
+export function serializeUser(): (
+	user: Express.User,
+	done: (err: any, id?: unknown) => void
+) => void {
+	return function (user: any, done) {
+		console.log('serializeUser');
+
+		//@ts-ignore
+		done(null, user.id);
+	};
+}
+
 export function deserializeUser(): (
 	id: unknown,
 	done: (err: any, user?: false | Express.User | null | undefined) => void

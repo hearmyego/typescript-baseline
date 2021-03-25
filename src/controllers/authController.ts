@@ -32,7 +32,13 @@ export default class authController extends baseController {
 			localMiddleware: [],
 		},
 		{
-			path: 'signup',
+			path: '/signup',
+			method: Methods.GET,
+			handler: this.signupGet,
+			localMiddleware: [],
+		},
+		{
+			path: '/signup',
 			method: Methods.POST,
 			handler: this.signupPost,
 			localMiddleware: [
@@ -56,6 +62,11 @@ export default class authController extends baseController {
 	}
 
 	async signupPost(request: Request, response: Response): Promise<void> {
+		console.log('signupPost');
+		response.status(200).render('pages/signup');
+	}
+
+	async signupGet(request: Request, response: Response): Promise<void> {
 		console.log('signupPost');
 		response.status(200).render('pages/signup');
 	}

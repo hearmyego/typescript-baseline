@@ -24,6 +24,8 @@ const userSchema = new Schema<IUserDocument, IUserModel>({
 		required: true,
 		lowercase: true,
 	},
+	courseAccess: [String],
+	signupToken: String,
 	local: localSettingSchema,
 });
 

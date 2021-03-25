@@ -1,4 +1,4 @@
-import { Response, Request } from 'express';
+import { Response, Request, NextFunction } from 'express';
 import baseController from './baseController';
 import { Methods } from '../core/Methods';
 
@@ -18,9 +18,27 @@ export default class defaultController extends baseController {
 			path: '/',
 			method: Methods.GET,
 			handler: this.frontpage,
-			localMiddleware: [],
+			localMiddleware: [
+				function (req: Request, res: Response, next: NextFunction): void {
+					console.log('Middleware 1');
+					next();
+				},
+				(req: Request, res: Response, next: NextFunction): void => {
+					console.log('Middleware 2');
+					next();
+				},
+				this.middlewareThree(),
+				middlewareFour(),
+			],
 		},
 	];
+
+	private middlewareThree() {
+		return function (req: Request, res: Response, next: NextFunction): void {
+			console.log('Middleware 3');
+			next();
+		};
+	}
 
 	async frontpage(request: Request, response: Response): Promise<void> {
 		console.log('frontpage');
@@ -53,4 +71,10 @@ export default class defaultController extends baseController {
 
 		response.status(template.status).render(template.templatename, viewModel);
 	}
+}
+function middlewareFour() {
+	return function (req: Request, res: Response, next: NextFunction): void {
+		console.log('Middleware 4');
+		next();
+	};
 }

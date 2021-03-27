@@ -11,7 +11,9 @@ const numberOfWorkers = parseInt(
 );
 
 if (cluster.isMaster) {
-	logger.info(`Master ${process.pid} is running`);
+	logger.info(
+		`Master ${process.pid} is running - Firing ${numberOfWorkers} workers up!`
+	);
 
 	for (let index = 0; index < numberOfWorkers; index++) {
 		cluster.fork();

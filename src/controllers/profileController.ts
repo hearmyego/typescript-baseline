@@ -3,6 +3,7 @@ import baseController from './baseController';
 import { Methods } from '../core/Methods';
 import isLoggedIn from '../middleware/isLoggedIn';
 import { IViewModel } from '../core/IViewModel';
+import logger from '../global/logger';
 
 export default class profileController extends baseController {
 	public path = '/profile'; // The path on which this.routes will be mapped
@@ -16,7 +17,7 @@ export default class profileController extends baseController {
 	];
 
 	async profile(request: Request, response: Response): Promise<void> {
-		console.log('profile');
+		logger.info('profile');
 
 		const viewModel: IViewModel = {
 			metaTags: {
@@ -25,7 +26,7 @@ export default class profileController extends baseController {
 			profile: request.user,
 		};
 
-		console.log(viewModel.profile);
+		logger.debug(viewModel.profile);
 
 		response.status(200).render('pages/profile', viewModel);
 	}

@@ -9,7 +9,7 @@ export class routesInitializer extends BaseInitializer {
 	}
 
 	public intialize() {
-		console.log('routesInitializer');
+		this.logger.info('routesInitializer');
 		controllers.forEach((controller) => {
 			var initController = new controller();
 			this.app.use(initController.path, initController.setRoutes());

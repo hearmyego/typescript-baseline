@@ -13,7 +13,7 @@ export class applicationInitializer extends BaseInitializer {
 	}
 
 	public async intialize() {
-		console.log('applicationInitializer');
+		this.logger.info('applicationInitializer');
 
 		this.app.disable('etag');
 		this.app.disable('x-powered-by');

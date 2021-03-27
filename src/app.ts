@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import logger from './global/logger';
 import initializers from './initializers';
 
 export default class App {
@@ -16,7 +17,7 @@ export default class App {
 
 	public listen() {
 		this.app.listen(this.port, () => {
-			console.log(`App listening on the port ${this.port}`);
+			logger.info(`App listening on the port ${this.port}`);
 		});
 	}
 }

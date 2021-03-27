@@ -12,7 +12,7 @@ export class handlebarsViewEngineInitializer extends BaseInitializer {
 	}
 
 	public intialize(): void {
-		console.log('handlebarsViewEngineInitializer');
+		this.logger.info('handlebarsViewEngineInitializer');
 
 		const viewFolder = path.join(appRoot.path, 'views');
 		const partialsDir = path.join(viewFolder, 'partials');

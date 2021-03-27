@@ -1,6 +1,7 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import userModel from '../../database/userModel';
+import logger from '../../global/logger';
 import { validPassword } from '../crypto';
 
 export function localLoginStrategy(): passport.Strategy {
@@ -16,19 +17,19 @@ export function localLoginStrategy(): passport.Strategy {
 				var user = await userModel.findOne({ 'local.email': email }).lean();
 
 				if (!user) {
-					console.log('User not found');
+					logger.info('User not found');
 					return done(null, false, { message: 'User Not Found' });
 				}
 
 				if (!validPassword(password, user.local?.password)) {
-					console.log('Password invalid');
+					logger.info('Password invalid');
 					return done(null, false, { message: 'Password not valid' });
 				} else {
-					console.log('Found and returned');
+					logger.info('Found and returned');
 					return done(null, user);
 				}
 			} catch (error) {
-				console.error(error);
+				logger.error(error);
 			}
 		}
 	);

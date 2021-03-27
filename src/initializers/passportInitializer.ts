@@ -11,7 +11,7 @@ export class passportInitializer extends BaseInitializer {
 	}
 
 	public async intialize() {
-		console.log('passportInitializer');
+		this.logger.info('passportInitializer');
 
 		passportConfig(passport);
 

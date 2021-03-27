@@ -4,6 +4,7 @@ import { Methods } from '../core/Methods';
 
 import { IViewModel } from '../core/IViewModel';
 import { getTemplate, makeTitleFromSlug } from '../helpers/templateHelper';
+import logger from '../global/logger';
 
 export default class defaultController extends baseController {
 	public path = '/'; // The path on which this.routes will be mapped
@@ -20,11 +21,11 @@ export default class defaultController extends baseController {
 			handler: this.frontpage,
 			localMiddleware: [
 				function (req: Request, res: Response, next: NextFunction): void {
-					console.log('Middleware 1');
+					logger.info('Middleware 1');
 					next();
 				},
 				(req: Request, res: Response, next: NextFunction): void => {
-					console.log('Middleware 2');
+					logger.info('Middleware 2');
 					next();
 				},
 				this.middlewareThree(),
@@ -35,13 +36,13 @@ export default class defaultController extends baseController {
 
 	private middlewareThree() {
 		return function (req: Request, res: Response, next: NextFunction): void {
-			console.log('Middleware 3');
+			logger.info('Middleware 3');
 			next();
 		};
 	}
 
 	async frontpage(request: Request, response: Response): Promise<void> {
-		console.log('frontpage');
+		logger.info('frontpage');
 		const viewModel: IViewModel = {
 			metaTags: {
 				title: 'Forside',
@@ -51,7 +52,7 @@ export default class defaultController extends baseController {
 	}
 
 	async slug(request: Request, response: Response): Promise<void> {
-		console.log('slug');
+		logger.info('slug');
 		const slug = request.params.slug;
 		const template = getTemplate(slug);
 
@@ -74,7 +75,7 @@ export default class defaultController extends baseController {
 }
 function middlewareFour() {
 	return function (req: Request, res: Response, next: NextFunction): void {
-		console.log('Middleware 4');
+		logger.info('Middleware 4');
 		next();
 	};
 }

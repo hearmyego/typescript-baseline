@@ -16,7 +16,7 @@ export class databaseInitializer extends BaseInitializer {
 				useUnifiedTopology: true,
 				useCreateIndex: true,
 			})
-			.then(() => console.log('Database connected'))
-			.catch((err) => console.log(err));
+			.then(() => this.logger.info('Database connected'))
+			.catch((err) => this.logger.error(err));
 	}
 }

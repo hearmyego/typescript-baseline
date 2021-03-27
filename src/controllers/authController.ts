@@ -3,6 +3,7 @@ import baseController from './baseController';
 import { Methods } from '../core/Methods';
 
 import passport from 'passport';
+import logger from '../global/logger';
 
 export default class authController extends baseController {
 	public path = '/local';
@@ -52,27 +53,27 @@ export default class authController extends baseController {
 	];
 
 	async loginPost(request: Request, response: Response): Promise<void> {
-		console.log('loginPost');
+		logger.info('loginPost');
 		response.status(200).render('pages/login');
 	}
 
 	async loginGet(request: Request, response: Response): Promise<void> {
-		console.log('loginGet');
+		logger.info('loginGet');
 		response.status(200).render('pages/login');
 	}
 
 	async signupPost(request: Request, response: Response): Promise<void> {
-		console.log('signupPost');
+		logger.info('signupPost');
 		response.status(200).render('pages/signup');
 	}
 
 	async signupGet(request: Request, response: Response): Promise<void> {
-		console.log('signupPost');
+		logger.info('signupPost');
 		response.status(200).render('pages/signup');
 	}
 
 	async logoutGet(request: Request, response: Response): Promise<void> {
-		console.log('logout');
+		logger.info('logout');
 		request.logout();
 		response.redirect('/');
 	}

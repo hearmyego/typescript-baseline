@@ -9,7 +9,7 @@ export class middlewareInitializer extends BaseInitializer {
 	}
 
 	public intialize() {
-		console.log('middlewareInitializer');
+		this.logger.info('middlewareInitializer');
 
 		this.app.use(requireHTTPS);
 	}

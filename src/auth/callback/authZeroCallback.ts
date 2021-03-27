@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import passport from 'passport';
+import logger from '../../global/logger';
 
 export const authZeroCallback = (
 	req: Request,
@@ -7,9 +8,9 @@ export const authZeroCallback = (
 	next: NextFunction
 ) => {
 	passport.authenticate('authZero', (err, user, info) => {
-		console.log(err);
-		console.log(user);
-		console.log(info);
+		logger.info(err);
+		logger.info(user);
+		logger.info(info);
 
 		if (err) {
 			return next(err);

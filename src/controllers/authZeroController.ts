@@ -4,6 +4,7 @@ import { Methods } from '../core/Methods';
 import passport from 'passport';
 import { authZeroCallback } from '../auth/callback/authZeroCallback';
 import querystring from 'querystring';
+import logger from '../global/logger';
 
 export default class authZeroController extends baseController {
 	public path = '/authzero';
@@ -39,17 +40,17 @@ export default class authZeroController extends baseController {
 	];
 
 	async callbackGet(request: Request, response: Response): Promise<void> {
-		console.log('callbackGet');
+		logger.info('callbackGet');
 		response.redirect('/profile');
 	}
 
 	async loginGet(request: Request, response: Response): Promise<void> {
-		console.log('loginGet');
+		logger.info('loginGet');
 		response.redirect('/');
 	}
 
 	async logoutGet(request: Request, response: Response): Promise<void> {
-		console.log('logout');
+		logger.info('logout');
 		request.logOut();
 
 		const logoutURL = new URL(`https://hearmyego.eu.auth0.com/v2/logout`);

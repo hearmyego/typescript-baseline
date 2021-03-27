@@ -1,6 +1,7 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import userModel from '../../database/userModel';
+import logger from '../../global/logger';
 import { generateHash } from '../crypto';
 
 export function localSignupStrategy(): passport.Strategy {
@@ -17,7 +18,7 @@ export function localSignupStrategy(): passport.Strategy {
 				.lean();
 
 			if (existingUser) {
-				console.log('User already exist');
+				logger.info('User already exist');
 				return done(null, false, {
 					message: 'That email is already taken.',
 				});

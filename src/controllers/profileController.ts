@@ -26,7 +26,7 @@ export default class profileController extends baseController {
 			profile: request.user,
 		};
 
-		logger.info(viewModel.profile);
+		// logger.info(viewModel);
 
 		response.status(200).render('pages/profile', viewModel);
 	}

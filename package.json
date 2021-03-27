@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/server.js | bunyan -o short",
     "dev": "nodemon src/server.ts | bunyan -o short",
     "new_dev": "npx ts-node devapp.ts",
     "build": "tsc -p .",

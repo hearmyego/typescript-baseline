@@ -1,6 +1,6 @@
 import bunyan from 'bunyan';
 
-const env = process.env.ENVIRONMENT || 'development';
+const env = process.env.NODE_ENV || 'development';
 
 function getConfig(env: string): bunyan.LoggerOptions {
 	switch (env) {
@@ -18,7 +18,7 @@ function getConfig(env: string): bunyan.LoggerOptions {
 
 		default:
 			return {
-				name: env,
+				name: 'development',
 				level: 'debug',
 			};
 	}

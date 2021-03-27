@@ -15,13 +15,13 @@ export class passportInitializer extends BaseInitializer {
 
 		passportConfig(passport);
 
-		this.app.use(
-			session({
-				secret: 'tWNw61085nwvcLFJEVmQ',
-				resave: true,
-				saveUninitialized: true,
-			})
-		);
+		// this.app.use(
+		// 	session({
+		// 		secret: 'tWNw61085nwvcLFJEVmQ',
+		// 		resave: true,
+		// 		saveUninitialized: true,
+		// 	})
+		// );
 		this.app.use(passport.initialize());
 		this.app.use(passport.session());
 	}

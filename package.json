@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon src/server.ts | bunyan -o short",
     "new_dev": "npx ts-node devapp.ts",
     "build": "tsc -p .",
     "prebuild": "node-sass ./public/scss/style.scss ./public/css/style.css --omit-source-map-url"
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/bcrypt-nodejs": "^0.0.31",
+    "@types/bunyan": "^1.8.6",
     "@types/compression": "^1.7.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.11",
@@ -36,6 +37,7 @@
     "aws-sdk": "^2.874.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
+    "bunyan": "^1.8.15",
     "cluster": "^0.7.7",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",

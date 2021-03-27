@@ -33,8 +33,10 @@
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "aws-sdk": "^2.874.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
+    "cluster": "^0.7.7",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -42,6 +44,7 @@
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.12.1",
+    "os": "^0.1.1",
     "passport": "^0.4.1",
     "passport-auth0": "^1.4.0",
     "passport-local": "^1.0.0",

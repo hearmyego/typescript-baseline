@@ -1,6 +1,7 @@
 import cluster from 'cluster';
 import os from 'os';
 import App from './app';
+import logger from './global/logger';
 
 require('dotenv').config();
 
@@ -10,13 +11,18 @@ const numberOfWorkers = parseInt(
 );
 
 if (cluster.isMaster) {
+	logger.info(`Master ${process.pid} is running`);
+
 	for (let index = 0; index < numberOfWorkers; index++) {
 		cluster.fork();
 	}
 	cluster.on('exit', (worker) => {
+		logger.fatal(`Worker ${worker.process.pid} just died`);
 		cluster.fork();
 	});
 } else {
 	const app = new App(PORT);
 	app.listen();
+
+	logger.info(`Worker ${process.pid} started`);
 }
